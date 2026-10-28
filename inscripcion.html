@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Inscríbete · Taqalid 2027</title>
+<meta name="description" content="Inscríbete a Taqalid 2027.">
+<link rel="alternate" type="application/rss+xml" title="Taqalid 2027 · Novedades" href="feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Bebas+Neue&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header>
+  <a class="logo" href="index.html">TAQ<span>A</span>LID 2027</a>
+  <nav id="menu" aria-label="Principal">
+    <a class="nav-btn" href="index.html" data-i18n="nInicio">Inicio</a>
+    <a class="nav-btn" href="programa.html" data-i18n="nPrograma">Programa</a>
+    <a class="nav-btn" href="historia.html" data-i18n="nHist">Historia</a>
+    <a class="nav-btn activo" href="inscripcion.html" data-i18n="nIns">Inscripción</a>
+  </nav>
+  <button class="menu-btn" id="menu-btn" aria-label="Menú" aria-expanded="false">☰</button>
+  <div class="tools">
+    <button class="tool-btn sec" id="tema-btn" aria-label="Tema">🌙</button>
+    <button class="tool-btn" id="lang-toggle">EN</button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page activo">
+    <h1 class="titulo-pagina" data-i18n="insTitulo">INSCRÍBETE</h1>
+    <p class="subtitulo" data-i18n="insSub">Elige tu idioma</p>
+
+    <div class="glass">
+      <p data-i18n="insTexto">Completa el formulario para participar. Cada botón abre el formulario en su idioma.</p>
+    </div>
+
+    <div style="margin-top:40px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
+      <!-- CAMBIAR: URLs reales de los formularios -->
+      <a class="btn" id="btn-form-es" href="https://example.com/formulario-es" target="_blank" rel="noopener noreferrer" data-i18n="btnEs">Formulario en Español</a>
+      <a class="btn verde" id="btn-form-en" href="https://example.com/formulario-en" target="_blank" rel="noopener noreferrer" data-i18n="btnEn">Formulario en Inglés</a>
+    </div>
+
+    <div class="acciones"><a class="btn neg volver" href="index.html" data-i18n="volver">← Volver al inicio</a></div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2027 Taqalid · <span data-i18n="contacto">Contacto</span>: contacto@dominio.org · <a href="feed.xml">RSS</a></p>
+</footer>
+
+<canvas id="trail"></canvas>
+<div id="llave" aria-hidden="true">
+  <svg viewBox="0 0 64 64" width="36" height="36">
+    <circle cx="20" cy="32" r="12" fill="none" stroke="#CE1126" stroke-width="6"/>
+    <circle cx="20" cy="32" r="12" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <rect x="30" y="28" width="26" height="8" fill="#FFFFFF"/>
+    <rect x="46" y="36" width="6" height="9" fill="#FFFFFF"/>
+    <rect x="37" y="36" width="6" height="7" fill="#007A3D"/>
+  </svg>
+</div>
+
+<button id="chat-toggle" aria-label="Chat">💬</button>
+<div id="chat-box" role="dialog" aria-label="Chatbot">
+  <div id="chat-head" data-i18n="chatTitulo">Asistente Taqalid</div>
+  <div id="chat-msgs"></div>
+  <form id="chat-form">
+    <input id="chat-input" type="text" maxlength="500" autocomplete="off" required placeholder="Escribe tu pregunta...">
+    <button type="submit" id="chat-send">➤</button>
+  </form>
+</div>
+
+<script src="js/comun.js"></script>
+</body>
+</html>
