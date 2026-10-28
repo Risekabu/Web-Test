@@ -75,7 +75,7 @@
     transition: background .45s var(--ease), color .45s var(--ease);
   }
 
-  /* Textura sutil mejorada */
+  /* Textura sutil */
   body::before {
     content: "";
     position: fixed;
@@ -554,7 +554,7 @@
   /* ── HISTORIA ── */
   .historia p { max-width: 760px; }
 
-  /* ── GALERÍA & ALIADOS ── */
+  /* ── GALERÍA ── */
   .galeria {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -580,29 +580,6 @@
   .foto:nth-child(2) { background: linear-gradient(145deg, rgba(255,255,255,.18), transparent); }
   .foto:nth-child(3) { background: linear-gradient(145deg, rgba(0,122,61,.32), transparent); }
   .foto:hover { transform: scale(1.04) rotate(-1.2deg); }
-
-  .aliados {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
-    margin-top: 22px;
-  }
-  .aliado {
-    padding: 18px 28px;
-    border: 1.5px dashed var(--borde);
-    border-radius: 14px;
-    color: var(--muted);
-    font-weight: 700;
-    letter-spacing: 1px;
-    min-width: 160px;
-    text-align: center;
-    transition: border-color .3s, color .3s;
-  }
-  .aliado:hover {
-    border-color: var(--verde);
-    color: var(--fg);
-  }
 
   .seccion-titulo {
     font-family: var(--display);
@@ -665,7 +642,6 @@
   footer a:hover { color: var(--rojo); }
 
   /* ── ÁRABE ── */
-  html[lang="ar"] .arabe { display: none; }
   html[lang="ar"] .titulo-pagina,
   html[lang="ar"] .faltan,
   html[lang="ar"] .en-vivo,
@@ -679,14 +655,6 @@
     letter-spacing: 0;
   }
   html[lang="ar"] body { font-family: "Cairo", sans-serif; }
-  .arabe {
-    font-family: "Amiri", serif;
-    font-size: 2.35rem;
-    color: var(--verde);
-    direction: rtl;
-    margin: -6px 0 22px;
-    line-height: 1.4;
-  }
 
   /* ── ONDA TÁCTIL ── */
   .onda {
@@ -899,7 +867,7 @@
   <nav id="menu" aria-label="Principal">
     <button class="nav-btn" data-go="inicio" data-i18n="nInicio">Inicio</button>
     <button class="nav-btn" data-go="programa" data-i18n="nPrograma">Programa</button>
-    <button class="nav-btn" data-go="historia">Historia</button>
+    <button class="nav-btn" data-go="historia" data-i18n="nHist">Historia</button>
     <button class="nav-btn" data-go="inscripcion" data-i18n="nIns">Inscripción</button>
   </nav>
   <button class="menu-btn" id="menu-btn" aria-label="Menú" aria-expanded="false">☰</button>
@@ -931,12 +899,12 @@
       <a class="btn verde" id="btn-gcal" target="_blank" rel="noopener noreferrer" data-i18n="btnCal">Agregar a Google Calendar</a>
     </div>
 
-    <h2 class="seccion-titulo reveal">Video</h2>
+    <h2 class="seccion-titulo reveal" data-i18n="vidTitulo">Video</h2>
     <div class="video-wrap reveal">
       <iframe src="https://www.youtube.com/embed/7c8PN6nydgI" title="Video de Taqalid 2027" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <h2 class="seccion-titulo reveal">Patrocinadores</h2>
+    <h2 class="seccion-titulo reveal" data-i18n="patTitulo">Patrocinadores</h2>
     <div class="carrusel reveal">
       <div class="carrusel-pista">
   <div class="patro"><img src="baklava.jpg" alt="Baklava"></div>
@@ -956,15 +924,14 @@
       <div class="foto" data-i18n="foto2">Próximamente</div>
       <div class="foto" data-i18n="foto3">Próximamente</div>
     </div>
-
   </section>
 
   <!-- HISTORIA -->
   <section class="page" id="p-historia">
-    <h2 class="titulo-pagina">HISTORIA</h2>
-    <p class="subtitulo">Nuestro origen</p>
+    <h2 class="titulo-pagina" data-i18n="histTitulo">HISTORIA</h2>
+    <p class="subtitulo" data-i18n="histSub">Nuestro origen</p>
     <div class="glass reveal historia">
-      <p>Aquí va la historia de Taqalid: cómo nació el encuentro, quiénes lo impulsan y qué lo ha hecho crecer cada año.</p>
+      <p data-i18n="histTexto">Aquí va la historia de Taqalid: cómo nació el encuentro, quiénes lo impulsan y qué lo ha hecho crecer cada año.</p>
     </div>
     <div class="acciones"><button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button></div>
   </section>
@@ -1009,7 +976,7 @@
     </div>
     <div style="margin-top:40px; display:flex; flex-wrap:wrap; gap:14px; justify-content:center;">
       <a class="btn" id="btn-form-es" href="https://example.com/formulario-es" target="_blank" rel="noopener noreferrer" data-i18n="btnEs">Formulario en Español</a>
-      <a class="btn verde" id="btn-form-en" href="https://example.com/formulario-en" target="_blank" rel="noopener noreferrer" data-i18n="btnEn">Fill the form in English</a>
+      <a class="btn verde" id="btn-form-en" href="https://example.com/formulario-en" target="_blank" rel="noopener noreferrer" data-i18n="btnEn">Formulario en Inglés</a>
     </div>
     <div class="acciones"><button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button></div>
   </section>
@@ -1047,17 +1014,19 @@
   const T = {
     es: {
       skip: "Saltar al contenido",
-      nInicio: "Inicio", nPrograma: "Programa", nIns: "Inscripción",
+      nInicio: "Inicio", nPrograma: "Programa", nHist: "Historia", nIns: "Inscripción",
       fechas: "22 – 25 DE ABRIL DE 2027", faltan: "Faltan", dias: "Días", horas: "Horas", min: "Min", seg: "Seg",
       envivo: "¡YA ESTAMOS EN VIVO!",
       sobreTexto: "Taqalid 2027 es un encuentro de cuatro días para compartir cultura, música, gastronomía y comunidad. Te invitamos a formar parte de esta experiencia.",
       btnIns: "Inscríbete", btnCal: "Agregar a Google Calendar", volver: "← Volver al inicio",
+      vidTitulo: "Video", patTitulo: "Patrocinadores",
       galTitulo: "Galería", foto1: "Ediciones anteriores", foto2: "Próximamente", foto3: "Próximamente",
-      aliTitulo: "Aliados", ali1: "Aliado 1", ali2: "Aliado 2", ali3: "Tu marca aquí",
+      histTitulo: "HISTORIA", histSub: "Nuestro origen",
+      histTexto: "Aquí va la historia de Taqalid: cómo nació el encuentro, quiénes lo impulsan y qué lo ha hecho crecer cada año.",
       progTitulo: "PROGRAMA", progSub: "Elige un día", hApertura: "Por confirmar", pApertura: "Apertura", pClub: "Club Árabe", pA2: "Actividad 2", pA3: "Actividad 3", hCierre: "Por confirmar", pCierre: "Cierre",
       progNota: "Horarios y sedes se confirmarán próximamente.",
       insTitulo: "INSCRÍBETE", insSub: "Elige tu idioma", insTexto: "Completa el formulario para participar. Cada botón abre el formulario en su idioma.",
-      btnEs: "Formulario en Español", btnEn: "Fill the form in English",
+      btnEs: "Formulario en Español", btnEn: "Formulario en Inglés",
       contacto: "Contacto", chatTitulo: "Asistente Taqalid",
       chatBienvenida: "¡Hola! Soy el asistente de Taqalid 2027. ¿En qué te ayudo?",
       chatError: "No pude responder en este momento. Intenta de nuevo más tarde.",
@@ -1066,17 +1035,19 @@
     },
     en: {
       skip: "Skip to content",
-      nInicio: "Home", nPrograma: "Program", nIns: "Register",
+      nInicio: "Home", nPrograma: "Program", nHist: "History", nIns: "Register",
       fechas: "APRIL 22 – 25, 2027", faltan: "Countdown", dias: "Days", horas: "Hours", min: "Min", seg: "Sec",
       envivo: "WE ARE LIVE NOW!",
       sobreTexto: "Taqalid 2027 is a four-day gathering to share culture, music, food and community. We invite you to be part of this experience.",
       btnIns: "Register", btnCal: "Add to Google Calendar", volver: "← Back to home",
+      vidTitulo: "Video", patTitulo: "Sponsors",
       galTitulo: "Gallery", foto1: "Past editions", foto2: "Coming soon", foto3: "Coming soon",
-      aliTitulo: "Partners", ali1: "Partner 1", ali2: "Partner 2", ali3: "Your brand here",
+      histTitulo: "HISTORY", histSub: "Our origin",
+      histTexto: "Here goes the story of Taqalid: how the gathering started, who drives it, and what has helped it grow every year.",
       progTitulo: "PROGRAM", progSub: "Choose a day", hApertura: "To be confirmed", pApertura: "Opening", pClub: "Arab Club", pA2: "Activity 2", pA3: "Activity 3", hCierre: "To be confirmed", pCierre: "Closing",
       progNota: "Schedules and venues will be confirmed soon.",
       insTitulo: "REGISTER", insSub: "Choose your language", insTexto: "Fill out the form to take part. Each button opens the form in its language.",
-      btnEs: "Formulario en Español", btnEn: "Fill the form in English",
+      btnEs: "Form in Spanish", btnEn: "Form in English",
       contacto: "Contact", chatTitulo: "Taqalid Assistant",
       chatBienvenida: "Hi! I'm the Taqalid 2027 assistant. How can I help you?",
       chatError: "I couldn't respond right now. Please try again later.",
@@ -1085,13 +1056,15 @@
     },
     ar: {
       skip: "انتقل إلى المحتوى",
-      nInicio: "الرئيسية", nPrograma: "البرنامج", nIns: "التسجيل",
+      nInicio: "الرئيسية", nPrograma: "البرنامج", nHist: "التاريخ", nIns: "التسجيل",
       fechas: "22 – 25 أبريل 2027", faltan: "متبقي", dias: "أيام", horas: "ساعات", min: "دقائق", seg: "ثوانٍ",
       envivo: "الحدث مباشر الآن!",
       sobreTexto: "طاقليد 2027 لقاء يدوم أربعة أيام لمشاركة الثقافة والموسيقى والطعام والمجتمع. ندعوك لتكون جزءًا من هذه التجربة.",
       btnIns: "سجّل الآن", btnCal: "أضف إلى تقويم Google", volver: "→ العودة إلى الرئيسية",
+      vidTitulo: "فيديو", patTitulo: "الرعاة",
       galTitulo: "المعرض", foto1: "الدورات السابقة", foto2: "قريبًا", foto3: "قريبًا",
-      aliTitulo: "الشركاء", ali1: "شريك 1", ali2: "شريك 2", ali3: "علامتك هنا",
+      histTitulo: "التاريخ", histSub: "أصلنا",
+      histTexto: "هنا تُكتب قصة طاقليد: كيف بدأ اللقاء، ومن يقف خلفه، وما الذي جعله يكبر كل عام.",
       progTitulo: "البرنامج", progSub: "اختر يومًا", hApertura: "قريبًا", pApertura: "الافتتاح", pClub: "النادي العربي", pA2: "النشاط 2", pA3: "النشاط 3", hCierre: "قريبًا", pCierre: "الختام",
       progNota: "سيتم تأكيد المواعيد والأماكن قريبًا.",
       insTitulo: "التسجيل", insSub: "اختر لغتك", insTexto: "أكمل النموذج للمشاركة. كل زر يفتح النموذج بلغته.",
