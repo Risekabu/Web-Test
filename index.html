@@ -24,6 +24,7 @@
     --blanco: #FFFFFF;
     --verde: #007A3D;
     --verde-soft: #00a854;
+    --azul-sv: #0F47AF;
     --bg: #0A0A0A;
     --fg: #FFFFFF;
     --muted: #b8b8b8;
@@ -245,6 +246,21 @@
     filter: drop-shadow(0 10px 28px rgba(0,0,0,.4));
     animation: brillo 7s ease-in-out infinite;
   }
+  .el-salvador {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 9vw, 6rem);
+    line-height: 1;
+    letter-spacing: 6px;
+    margin-top: 6px;
+    background: linear-gradient(105deg, var(--azul-sv) 0%, #FFFFFF 50%, var(--azul-sv) 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,.35));
+    animation: brillo 7s ease-in-out infinite;
+  }
   @keyframes brillo {
     0%,100% { background-position: 0% center; }
     50% { background-position: 100% center; }
@@ -347,6 +363,20 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
+  }
+
+  /* ── VIDEO ── */
+  .video-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .video-wrap iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 18px;
+    box-shadow: var(--shadow);
   }
 
   /* ── TÍTULOS DE PÁGINA ── */
@@ -521,41 +551,8 @@
   }
   .fila span { font-weight: 700; font-size: 1.05rem; }
 
-  /* ── SEDES ── */
-  .sedes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 22px;
-    margin-top: 26px;
-  }
-  .sede-mapa {
-    height: 150px;
-    border-radius: 14px;
-    margin-bottom: 18px;
-    background:
-      linear-gradient(135deg, rgba(206,17,38,.2), transparent 60%),
-      repeating-linear-gradient(45deg, rgba(206,17,38,.18) 0 12px, rgba(0,122,61,.18) 12px 24px);
-    border: 1px solid var(--borde);
-  }
-
-  /* ── NOVEDADES ── */
-  .noticia { border-left: 4px solid var(--rojo); }
-  .noticia:nth-child(2n) { border-left-color: var(--verde); }
-  .rss-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 34px;
-  }
-  .rss-box code {
-    font-size: .9rem;
-    color: var(--muted);
-    background: rgba(0,0,0,.25);
-    padding: 4px 10px;
-    border-radius: 6px;
-  }
+  /* ── HISTORIA ── */
+  .historia p { max-width: 760px; }
 
   /* ── GALERÍA & ALIADOS ── */
   .galeria {
@@ -902,11 +899,7 @@
   <nav id="menu" aria-label="Principal">
     <button class="nav-btn" data-go="inicio" data-i18n="nInicio">Inicio</button>
     <button class="nav-btn" data-go="programa" data-i18n="nPrograma">Programa</button>
-    <button class="nav-btn" data-go="club-arabe" data-i18n="nClub">Club Árabe</button>
-    <button class="nav-btn" data-go="actividad-2" data-i18n="nAct2">Actividad 2</button>
-    <button class="nav-btn" data-go="actividad-3" data-i18n="nAct3">Actividad 3</button>
-    <button class="nav-btn" data-go="sedes" data-i18n="nSedes">Sedes</button>
-    <button class="nav-btn" data-go="novedades" data-i18n="nNovedades">Novedades</button>
+    <button class="nav-btn" data-go="historia">Historia</button>
     <button class="nav-btn" data-go="inscripcion" data-i18n="nIns">Inscripción</button>
   </nav>
   <button class="menu-btn" id="menu-btn" aria-label="Menú" aria-expanded="false">☰</button>
@@ -921,7 +914,8 @@
   <section class="page activo" id="p-inicio">
     <div class="hero">
       <h1>TAQALID</h1>
-      <p class="fechas" data-i18n="fechas">22 – 25 DE ABRIL DE 2027</p>
+      <p class="el-salvador">EL SALVADOR</p>
+      <p class="fechas" data-i18n="fechas">22 – 25 DE ABRIL DE 2027 · 10:00 A. M.</p>
       <p class="faltan" data-i18n="faltan">Faltan</p>
       <div class="countdown" id="countdown" aria-live="polite">
         <div class="unidad"><b id="d">--</b><small data-i18n="dias">Días</small></div>
@@ -935,6 +929,11 @@
     <div class="acciones reveal">
       <button class="btn" data-go="inscripcion" data-i18n="btnIns">Inscríbete</button>
       <a class="btn verde" id="btn-gcal" target="_blank" rel="noopener noreferrer" data-i18n="btnCal">Agregar a Google Calendar</a>
+    </div>
+
+    <h2 class="seccion-titulo reveal">Video</h2>
+    <div class="video-wrap reveal">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video de Taqalid 2027" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <h2 class="seccion-titulo reveal">Patrocinadores</h2>
@@ -958,12 +957,16 @@
       <div class="foto" data-i18n="foto3">Próximamente</div>
     </div>
 
-    <h2 class="seccion-titulo reveal" data-i18n="aliTitulo">Aliados</h2>
-    <div class="aliados reveal">
-      <div class="aliado" data-i18n="ali1">Aliado 1</div>
-      <div class="aliado" data-i18n="ali2">Aliado 2</div>
-      <div class="aliado" data-i18n="ali3">Tu marca aquí</div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="page" id="p-historia">
+    <h2 class="titulo-pagina">HISTORIA</h2>
+    <p class="subtitulo">Nuestro origen</p>
+    <div class="glass reveal historia">
+      <p>Aquí va la historia de Taqalid: cómo nació el encuentro, quiénes lo impulsan y qué lo ha hecho crecer cada año.</p>
     </div>
+    <div class="acciones"><button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button></div>
   </section>
 
   <!-- PROGRAMA -->
@@ -995,94 +998,6 @@
     </div>
     <p class="subtitulo" style="margin-top:34px" data-i18n="progNota">Horarios y sedes se confirmarán próximamente.</p>
     <div class="acciones"><button class="btn volver neg" data-go="inicio" data-i18n="volver">← Volver al inicio</button></div>
-  </section>
-
-  <!-- CLUB ÁRABE -->
-  <section class="page" id="p-club-arabe">
-    <h2 class="titulo-pagina" data-i18n="clubTitulo">CLUB ÁRABE</h2>
-    <p class="arabe" dir="rtl" lang="ar">النادي العربي</p>
-    <p class="subtitulo" data-i18n="clubSub">Actividad · 22–25 abril 2027</p>
-    <div class="glass">
-      <h3 data-i18n="clubB1t">Qué es</h3>
-      <p data-i18n="clubB1">Un espacio de encuentro cultural donde compartir tradiciones, conversación y convivencia para personas de todas las edades.</p>
-    </div>
-    <div class="glass">
-      <h3 data-i18n="clubB2t">Qué esperar</h3>
-      <ul>
-        <li data-i18n="clubL1">Actividades abiertas al público</li>
-        <li data-i18n="clubL2">Espacios de conversación y convivencia</li>
-        <li data-i18n="clubL3">Detalles de horario y sede próximamente</li>
-      </ul>
-    </div>
-    <div class="acciones">
-      <button class="btn verde" data-go="inscripcion" data-i18n="btnIns">Inscríbete</button>
-      <button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button>
-    </div>
-  </section>
-
-  <!-- ACTIVIDAD 2 -->
-  <section class="page" id="p-actividad-2">
-    <h2 class="titulo-pagina" data-i18n="a2Titulo">ACTIVIDAD 2</h2>
-    <p class="subtitulo" data-i18n="a2Sub">Por definir</p>
-    <div class="glass">
-      <h3 data-i18n="a2B1t">Próximamente</h3>
-      <p data-i18n="a2B1">Estamos preparando los detalles de esta actividad. Vuelve pronto para conocer el programa, la sede y el horario.</p>
-    </div>
-    <div class="acciones">
-      <button class="btn verde" data-go="inscripcion" data-i18n="btnIns">Inscríbete</button>
-      <button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button>
-    </div>
-  </section>
-
-  <!-- ACTIVIDAD 3 -->
-  <section class="page" id="p-actividad-3">
-    <h2 class="titulo-pagina" data-i18n="a3Titulo">ACTIVIDAD 3</h2>
-    <p class="subtitulo" data-i18n="a3Sub">Por definir</p>
-    <div class="glass">
-      <h3 data-i18n="a3B1t">Próximamente</h3>
-      <p data-i18n="a3B1">Estamos preparando los detalles de esta actividad. Vuelve pronto para conocer el programa, la sede y el horario.</p>
-    </div>
-    <div class="acciones">
-      <button class="btn verde" data-go="inscripcion" data-i18n="btnIns">Inscríbete</button>
-      <button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button>
-    </div>
-  </section>
-
-  <!-- SEDES -->
-  <section class="page" id="p-sedes">
-    <h2 class="titulo-pagina" data-i18n="sedTitulo">SEDES</h2>
-    <p class="subtitulo" data-i18n="sedSub">Ubicaciones</p>
-    <div class="sedes">
-      <div class="glass">
-        <div class="sede-mapa"></div>
-        <h3 data-i18n="sed1t">Sede principal</h3>
-        <p data-i18n="sed1d">Dirección por confirmar.</p>
-        <a class="btn verde volver" href="https://www.google.com/maps/search/?api=1&query=Taqalid+2027" target="_blank" rel="noopener noreferrer" data-i18n="verMapa">Ver en Google Maps</a>
-      </div>
-      <div class="glass">
-        <div class="sede-mapa"></div>
-        <h3 data-i18n="sed2t">Sede de actividades</h3>
-        <p data-i18n="sed2d">Dirección por confirmar.</p>
-        <a class="btn verde volver" href="https://www.google.com/maps/search/?api=1&query=Taqalid+2027" target="_blank" rel="noopener noreferrer" data-i18n="verMapa">Ver en Google Maps</a>
-      </div>
-    </div>
-    <div class="acciones"><button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button></div>
-  </section>
-
-  <!-- NOVEDADES -->
-  <section class="page" id="p-novedades">
-    <h2 class="titulo-pagina" data-i18n="novTitulo">NOVEDADES</h2>
-    <p class="subtitulo" data-i18n="novSub">Anuncios del evento</p>
-    <div id="lista-novedades"></div>
-    <div class="rss-box glass">
-      <div>
-        <h3 data-i18n="rssT">Suscríbete por RSS</h3>
-        <p data-i18n="rssD">Recibe los anuncios en tu lector de RSS favorito.</p>
-        <code>feed.xml</code>
-      </div>
-      <a class="btn verde volver" href="feed.xml" data-i18n="rssBtn">Abrir feed RSS</a>
-    </div>
-    <div class="acciones"><button class="btn neg volver" data-go="inicio" data-i18n="volver">← Volver al inicio</button></div>
   </section>
 
   <!-- INSCRIPCIÓN -->
@@ -1129,89 +1044,63 @@
 (() => {
   const N8N_WEBHOOK = "https://example.com/webhook/taqalid-chat";
 
-  const NOVEDADES = [
-    { fecha: "2026-11-15", es: ["Se abre la pre-inscripción", "Ya puedes registrarte en el formulario oficial del evento."], en: ["Pre-registration is open", "You can now sign up through the official event form."], ar: ["فتح التسجيل المسبق", "يمكنك التسجيل الآن عبر النموذج الرسمي للحدث."] },
-    { fecha: "2027-02-10", es: ["Programa en preparación", "Estamos confirmando horarios y sedes de cada día."], en: ["Program in preparation", "We are confirming schedules and venues for each day."], ar: ["البرنامج قيد الإعداد", "نؤكد حاليًا المواعيد والأماكن لكل يوم."] }
-  ];
-
   const T = {
     es: {
       skip: "Saltar al contenido",
-      nInicio: "Inicio", nPrograma: "Programa", nClub: "Club Árabe", nAct2: "Actividad 2", nAct3: "Actividad 3", nSedes: "Sedes", nNovedades: "Novedades", nIns: "Inscripción",
-      fechas: "22 – 25 DE ABRIL DE 2027", faltan: "Faltan", dias: "Días", horas: "Horas", min: "Min", seg: "Seg",
+      nInicio: "Inicio", nPrograma: "Programa", nIns: "Inscripción",
+      fechas: "22 – 25 DE ABRIL DE 2027 · 10:00 A. M.", faltan: "Faltan", dias: "Días", horas: "Horas", min: "Min", seg: "Seg",
       envivo: "¡YA ESTAMOS EN VIVO!",
       sobreTexto: "Taqalid 2027 es un encuentro de cuatro días para compartir cultura, música, gastronomía y comunidad. Te invitamos a formar parte de esta experiencia.",
-      btnIns: "Inscríbete", btnCal: "Agregar a Google Calendar", btnIcs: "Descargar .ics", btnComp: "Compartir", btnWa: "Compartir por WhatsApp", volver: "← Volver al inicio",
+      btnIns: "Inscríbete", btnCal: "Agregar a Google Calendar", volver: "← Volver al inicio",
       galTitulo: "Galería", foto1: "Ediciones anteriores", foto2: "Próximamente", foto3: "Próximamente",
       aliTitulo: "Aliados", ali1: "Aliado 1", ali2: "Aliado 2", ali3: "Tu marca aquí",
       progTitulo: "PROGRAMA", progSub: "Elige un día", hApertura: "Por confirmar", pApertura: "Apertura", pClub: "Club Árabe", pA2: "Actividad 2", pA3: "Actividad 3", hCierre: "Por confirmar", pCierre: "Cierre",
       progNota: "Horarios y sedes se confirmarán próximamente.",
-      clubTitulo: "CLUB ÁRABE", clubSub: "Actividad · 22–25 abril 2027",
-      clubB1t: "Qué es", clubB1: "Un espacio de encuentro cultural donde compartir tradiciones, conversación y convivencia para personas de todas las edades.",
-      clubB2t: "Qué esperar", clubL1: "Actividades abiertas al público", clubL2: "Espacios de conversación y convivencia", clubL3: "Detalles de horario y sede próximamente",
-      a2Titulo: "ACTIVIDAD 2", a2Sub: "Por definir", a2B1t: "Próximamente", a2B1: "Estamos preparando los detalles de esta actividad. Vuelve pronto para conocer el programa, la sede y el horario.",
-      a3Titulo: "ACTIVIDAD 3", a3Sub: "Por definir", a3B1t: "Próximamente", a3B1: "Estamos preparando los detalles de esta actividad. Vuelve pronto para conocer el programa, la sede y el horario.",
-      sedTitulo: "SEDES", sedSub: "Ubicaciones", sed1t: "Sede principal", sed1d: "Dirección por confirmar.", sed2t: "Sede de actividades", sed2d: "Dirección por confirmar.", verMapa: "Ver en Google Maps",
-      novTitulo: "NOVEDADES", novSub: "Anuncios del evento", rssT: "Suscríbete por RSS", rssD: "Recibe los anuncios en tu lector de RSS favorito.", rssBtn: "Abrir feed RSS",
       insTitulo: "INSCRÍBETE", insSub: "Elige tu idioma", insTexto: "Completa el formulario para participar. Cada botón abre el formulario en su idioma.",
       btnEs: "Formulario en Español", btnEn: "Fill the form in English",
       contacto: "Contacto", chatTitulo: "Asistente Taqalid",
       chatBienvenida: "¡Hola! Soy el asistente de Taqalid 2027. ¿En qué te ayudo?",
       chatError: "No pude responder en este momento. Intenta de nuevo más tarde.",
       chatPlaceholder: "Escribe tu pregunta...",
-      calTitulo: "Taqalid 2027", compartido: "Enlace copiado", copiarFallo: "No se pudo copiar el enlace"
+      calTitulo: "Taqalid 2027"
     },
     en: {
       skip: "Skip to content",
-      nInicio: "Home", nPrograma: "Program", nClub: "Arab Club", nAct2: "Activity 2", nAct3: "Activity 3", nSedes: "Venues", nNovedades: "News", nIns: "Register",
-      fechas: "APRIL 22 – 25, 2027", faltan: "Countdown", dias: "Days", horas: "Hours", min: "Min", seg: "Sec",
+      nInicio: "Home", nPrograma: "Program", nIns: "Register",
+      fechas: "APRIL 22 – 25, 2027 · 10:00 AM", faltan: "Countdown", dias: "Days", horas: "Hours", min: "Min", seg: "Sec",
       envivo: "WE ARE LIVE NOW!",
       sobreTexto: "Taqalid 2027 is a four-day gathering to share culture, music, food and community. We invite you to be part of this experience.",
-      btnIns: "Register", btnCal: "Add to Google Calendar", btnIcs: "Download .ics", btnComp: "Share", btnWa: "Share on WhatsApp", volver: "← Back to home",
+      btnIns: "Register", btnCal: "Add to Google Calendar", volver: "← Back to home",
       galTitulo: "Gallery", foto1: "Past editions", foto2: "Coming soon", foto3: "Coming soon",
       aliTitulo: "Partners", ali1: "Partner 1", ali2: "Partner 2", ali3: "Your brand here",
       progTitulo: "PROGRAM", progSub: "Choose a day", hApertura: "To be confirmed", pApertura: "Opening", pClub: "Arab Club", pA2: "Activity 2", pA3: "Activity 3", hCierre: "To be confirmed", pCierre: "Closing",
       progNota: "Schedules and venues will be confirmed soon.",
-      clubTitulo: "ARAB CLUB", clubSub: "Activity · April 22–25, 2027",
-      clubB1t: "What it is", clubB1: "A cultural meeting space to share traditions, conversation and community for people of all ages.",
-      clubB2t: "What to expect", clubL1: "Activities open to the public", clubL2: "Spaces for conversation and togetherness", clubL3: "Schedule and venue details coming soon",
-      a2Titulo: "ACTIVITY 2", a2Sub: "To be announced", a2B1t: "Coming soon", a2B1: "We are preparing the details of this activity. Come back soon for the program, venue and schedule.",
-      a3Titulo: "ACTIVITY 3", a3Sub: "To be announced", a3B1t: "Coming soon", a3B1: "We are preparing the details of this activity. Come back soon for the program, venue and schedule.",
-      sedTitulo: "VENUES", sedSub: "Locations", sed1t: "Main venue", sed1d: "Address to be confirmed.", sed2t: "Activities venue", sed2d: "Address to be confirmed.", verMapa: "View on Google Maps",
-      novTitulo: "NEWS", novSub: "Event announcements", rssT: "Subscribe via RSS", rssD: "Get announcements in your favorite RSS reader.", rssBtn: "Open RSS feed",
       insTitulo: "REGISTER", insSub: "Choose your language", insTexto: "Fill out the form to take part. Each button opens the form in its language.",
       btnEs: "Formulario en Español", btnEn: "Fill the form in English",
       contacto: "Contact", chatTitulo: "Taqalid Assistant",
       chatBienvenida: "Hi! I'm the Taqalid 2027 assistant. How can I help you?",
       chatError: "I couldn't respond right now. Please try again later.",
       chatPlaceholder: "Type your question...",
-      calTitulo: "Taqalid 2027", compartido: "Link copied", copiarFallo: "Could not copy the link"
+      calTitulo: "Taqalid 2027"
     },
     ar: {
       skip: "انتقل إلى المحتوى",
-      nInicio: "الرئيسية", nPrograma: "البرنامج", nClub: "النادي العربي", nAct2: "النشاط 2", nAct3: "النشاط 3", nSedes: "الأماكن", nNovedades: "الأخبار", nIns: "التسجيل",
-      fechas: "22 – 25 أبريل 2027", faltan: "متبقي", dias: "أيام", horas: "ساعات", min: "دقائق", seg: "ثوانٍ",
+      nInicio: "الرئيسية", nPrograma: "البرنامج", nIns: "التسجيل",
+      fechas: "22 – 25 أبريل 2027 · 10:00 صباحًا", faltan: "متبقي", dias: "أيام", horas: "ساعات", min: "دقائق", seg: "ثوانٍ",
       envivo: "الحدث مباشر الآن!",
       sobreTexto: "طاقليد 2027 لقاء يدوم أربعة أيام لمشاركة الثقافة والموسيقى والطعام والمجتمع. ندعوك لتكون جزءًا من هذه التجربة.",
-      btnIns: "سجّل الآن", btnCal: "أضف إلى تقويم Google", btnIcs: "تحميل .ics", btnComp: "مشاركة", btnWa: "مشاركة عبر واتساب", volver: "→ العودة إلى الرئيسية",
+      btnIns: "سجّل الآن", btnCal: "أضف إلى تقويم Google", volver: "→ العودة إلى الرئيسية",
       galTitulo: "المعرض", foto1: "الدورات السابقة", foto2: "قريبًا", foto3: "قريبًا",
       aliTitulo: "الشركاء", ali1: "شريك 1", ali2: "شريك 2", ali3: "علامتك هنا",
       progTitulo: "البرنامج", progSub: "اختر يومًا", hApertura: "قريبًا", pApertura: "الافتتاح", pClub: "النادي العربي", pA2: "النشاط 2", pA3: "النشاط 3", hCierre: "قريبًا", pCierre: "الختام",
       progNota: "سيتم تأكيد المواعيد والأماكن قريبًا.",
-      clubTitulo: "النادي العربي", clubSub: "نشاط · 22–25 أبريل 2027",
-      clubB1t: "ما هو", clubB1: "مساحة لقاء ثقافي لمشاركة التقاليد والحوار والتعايش لأشخاص من جميع الأعمار.",
-      clubB2t: "ماذا تتوقع", clubL1: "أنشطة مفتوحة للجمهور", clubL2: "مساحات للحوار والتعايش", clubL3: "تفاصيل الموعد والمكان قريبًا",
-      a2Titulo: "النشاط 2", a2Sub: "قيد التحديد", a2B1t: "قريبًا", a2B1: "نعمل على تفاصيل هذا النشاط. عد قريبًا لمعرفة البرنامج والمكان والموعد.",
-      a3Titulo: "النشاط 3", a3Sub: "قيد التحديد", a3B1t: "قريبًا", a3B1: "نعمل على تفاصيل هذا النشاط. عد قريبًا لمعرفة البرنامج والمكان والموعد.",
-      sedTitulo: "الأماكن", sedSub: "المواقع", sed1t: "المقر الرئيسي", sed1d: "العنوان قيد التأكيد.", sed2t: "مكان الأنشطة", sed2d: "العنوان قيد التأكيد.", verMapa: "عرض على خرائط Google",
-      novTitulo: "الأخبار", novSub: "إعلانات الحدث", rssT: "الاشتراك عبر RSS", rssD: "استلم الإعلانات في قارئ RSS المفضل لديك.", rssBtn: "فتح خلاصة RSS",
       insTitulo: "التسجيل", insSub: "اختر لغتك", insTexto: "أكمل النموذج للمشاركة. كل زر يفتح النموذج بلغته.",
       btnEs: "النموذج بالإسبانية", btnEn: "النموذج بالإنجليزية",
       contacto: "التواصل", chatTitulo: "مساعد طاقليد",
       chatBienvenida: "مرحبًا! أنا مساعد طاقليد 2027. كيف يمكنني مساعدتك؟",
       chatError: "تعذّر الرد الآن. حاول مرة أخرى لاحقًا.",
       chatPlaceholder: "اكتب سؤالك...",
-      calTitulo: "طاقليد 2027", compartido: "تم نسخ الرابط", copiarFallo: "تعذّر نسخ الرابط"
+      calTitulo: "طاقليد 2027"
     }
   };
 
@@ -1241,7 +1130,6 @@
     });
     document.getElementById("lang-toggle").textContent = { es: "EN", en: "AR", ar: "ES" }[lang];
     document.getElementById("chat-input").placeholder = t().chatPlaceholder;
-    renderNovedades();
     actualizarCalendario();
   }
   document.getElementById("lang-toggle").addEventListener("click", () => {
@@ -1252,9 +1140,7 @@
 
   // PÁGINAS
   const paginas = {
-    "inicio": "p-inicio", "programa": "p-programa", "club-arabe": "p-club-arabe",
-    "actividad-2": "p-actividad-2", "actividad-3": "p-actividad-3",
-    "sedes": "p-sedes", "novedades": "p-novedades", "inscripcion": "p-inscripcion"
+    "inicio": "p-inicio", "programa": "p-programa", "historia": "p-historia", "inscripcion": "p-inscripcion"
   };
 
   function mostrar(nombre) {
@@ -1306,31 +1192,8 @@
     document.querySelectorAll(".page.activo .reveal").forEach(el => io.observe(el));
   }
 
-  // Novedades
-  function renderNovedades() {
-    const cont = document.getElementById("lista-novedades");
-    cont.textContent = "";
-    NOVEDADES.slice().reverse().forEach(n => {
-      const par = n[lang];
-      const card = document.createElement("div");
-      card.className = "glass noticia";
-      const meta = document.createElement("div");
-      meta.className = "meta";
-      meta.textContent = new Date(n.fecha + "T12:00:00").toLocaleDateString(
-        { es: "es-SV", en: "en-US", ar: "ar-SA" }[lang],
-        { year: "numeric", month: "long", day: "numeric" }
-      );
-      const h = document.createElement("h3");
-      h.textContent = par[0];
-      const p = document.createElement("p");
-      p.textContent = par[1];
-      card.append(meta, h, p);
-      cont.appendChild(card);
-    });
-  }
-
-  // Countdown
-  const INICIO = new Date("2027-04-22T00:00:00-06:00").getTime();
+  // Countdown: inicio el 22 de abril de 2027 a las 10:00 a. m. (El Salvador, UTC-6)
+  const INICIO = new Date("2027-04-22T10:00:00-06:00").getTime();
   const FIN = new Date("2027-04-26T00:00:00-06:00").getTime();
   const pad = n => String(n).padStart(2, "0");
   const ultimos = {};
@@ -1360,13 +1223,14 @@
   setInterval(tick, 1000);
   tick();
 
-  // Calendario
+  // Calendario: 22 de abril 10:00 a. m. a 25 de abril 6:00 p. m. (El Salvador)
   function actualizarCalendario() {
     const detalles = encodeURIComponent(t().sobreTexto);
     document.getElementById("btn-gcal").href =
       "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(t().calTitulo) +
-      "&dates=20270422/20270426&details=" + detalles + "&location=El+Salvador";
+      "&dates=20270422T100000/20270425T180000&ctz=America/El_Salvador&details=" + detalles + "&location=El+Salvador";
   }
+
   // Chat
   const box = document.getElementById("chat-box");
   const msgs = document.getElementById("chat-msgs");
